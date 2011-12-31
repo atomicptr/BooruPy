@@ -2,13 +2,12 @@ from pyDanbooru.pydanbooru import pyDanbooru
 import os
 import urllib2
 
-# configs
-
 tags = raw_input("Tags (seperate with space): ").split(' ')
 
 if not tags:
         tags = {"nekomimi"}
 
+# load provider list
 pydan = pyDanbooru("provider.js")
 
 i = 0
@@ -49,7 +48,7 @@ for i in images:
 	filesize += i.filesize
 
 downloaded = 0.0
-last_fsd = 0.0
+last_fsd = 0.0 # last file_size_dl
 
 for i in images:
         file_name = i.url.split('/')[-1]
@@ -76,5 +75,4 @@ for i in images:
                          downloaded * 100 / filesize)
                 status = status + chr(8)*(len(status)+1)
                 print status
-        
         f.close()
