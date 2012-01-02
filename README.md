@@ -11,7 +11,7 @@ pyDanbooru is licensed under the terms of [GNU General Public License v3](http:/
 Documentation
 ----------------------
 
-coming soon...
+Yeah, there is something like that [here](https://github.com/Kasoki/pyDanbooru/wiki/Documentation)
 
 Ehh, there is something like a test application...
 ----------------------
