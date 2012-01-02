@@ -12,7 +12,11 @@ class pyDanbooru:
 		self.provider_list = []
 		for p in providers:
 			self.provider_list.append(Provider(p))
-	def get_provider(self, provider):
-		if isinstance(provider, int):
-			return self.provider_list[provider]
+	def get_provider_by_id(self, provider_id):
+		if isinstance(provider_id, int):
+			return self.provider_list[provider_id]
+	def get_provider_by_key(self, provider_key):
+                for p in self.provider_list:
+                        if p.key is provider_key:
+                                return p
 	

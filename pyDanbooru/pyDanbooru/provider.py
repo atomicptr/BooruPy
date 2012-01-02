@@ -10,6 +10,7 @@ from image import Image
 class Provider:
 	def __init__(self, provider_entry):
 		if provider_entry:
+                        self.key = provider_entry["key"]
 			self.name = provider_entry["name"]
 			self.url = provider_entry["url"]
 			self.json_query = provider_entry["json-query"]
