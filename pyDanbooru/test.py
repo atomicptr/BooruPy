@@ -2,12 +2,10 @@ from pyDanbooru.pydanbooru import pyDanbooru
 import os
 import urllib2
 
+# configs
+
 tags = raw_input("Tags (seperate with space): ").split(' ')
 
-if not tags:
-        tags = {"nekomimi"}
-
-# load provider list
 pydan = pyDanbooru("provider.js")
 
 i = 0
@@ -16,25 +14,28 @@ for p in pydan.provider_list:
         print("{0}, {1}".format(i, p.name))
         i += 1
 
-pid = raw_input("Provider-ID: ")
+pid = raw_input("Provider-ID:[0] ")
 
 if not pid:
         pid = 0
 
-path = raw_input("Path: ")
+provider = pydan.get_provider_by_id(int(pid))
+
+path = raw_input("Path:[{0}-{1}/] ".format(provider.key, "-".join(tags)))
 
 if not path:
-        path = "ddl/"
+        path = "{0}-{1}/".format(provider.key, "-".join(tags))
+
+if not path[len(path)-1] is "/":
+        path += "/"
 
 if not os.path.exists(path):
-	os.mkdir(path)
+        os.mkdir(path)
 
-file_count = raw_input("file download count: ")
+file_count = raw_input("file download count:[10] ")
 
 if not file_count:
         file_count = 10
-
-provider = pydan.get_provider(int(pid))
 
 print("download json filelist...")
 
@@ -45,10 +46,10 @@ print("done")
 filesize = 0.0
 
 for i in images:
-	filesize += i.filesize
+        filesize += i.filesize
 
 downloaded = 0.0
-last_fsd = 0.0 # last file_size_dl
+last_fsd = 0.0
 
 for i in images:
         file_name = i.url.split('/')[-1]
@@ -73,6 +74,5 @@ for i in images:
                         file_size_dl,
                          file_size_dl * 100. / file_size,
                          downloaded * 100 / filesize)
-                status = status + chr(8)*(len(status)+1)
-                print status
+                print(status)
         f.close()
