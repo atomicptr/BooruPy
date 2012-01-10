@@ -30,23 +30,34 @@ if not path[len(path)-1] is "/":
 if not os.path.exists(path):
     os.mkdir(path)
 
-file_count = raw_input("file download count:[10] ")
+#file_count = raw_input("file download count:[10] ")
 
-if not file_count:
-    file_count = 10
+#if not file_count:
+#    file_count = 10
 
 print("download image informations")
 
-images = booru_provider.get_images(
-    booru_provider.get_request_url(
-        tags, limit=file_count))
+images = []
+page_counter = 1
+post_per_request = 100
+
+while True:
+    images += booru_provider.get_images(
+        booru_provider.get_request_url(
+            tags, limit=post_per_request, page=page_counter))
+    page_counter += 1
+    
+    print("load new page {0}, {1}".format(len(images), page_counter))
+    
+    if (len(images) % post_per_request) > 0:
+        break
 
 print("done")
 
 downloaded = 1
 
 for i in images:
-    file_name = i.url.split('/')[-1]
+    file_name = "{0}.{1}".format(i.md5, i.url.split('.')[-1])
     u = urllib2.urlopen(i.url)
     f = open(path + file_name, 'wb')
     meta = u.info()

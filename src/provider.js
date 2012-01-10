@@ -28,6 +28,13 @@
 		"json-query": "/post/index.json?{0}"
 	},
 	{
+		"key": "konachan",
+		"name": "Konachan",
+		"type": "danbooru",
+		"url": "http://konachan.com",
+		"json-query": "/post/index.json?{0}"
+	},
+	{
 		"key": "gel",
 		"name": "gelbooru",
 		"type": "gelbooru",
