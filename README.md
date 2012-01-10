@@ -5,8 +5,8 @@ BooruPy is a simple library for interacting with various image board "Booru" sys
 
 Supporting
 ----------------------
-* Danbooru 1.18.0
-* Gelbooru 0.2
+* Danbooru
+* Gelbooru
 
 License?
 ----------------------
