@@ -16,7 +16,7 @@ BooruPy is licensed under the terms of [GNU General Public License v3](http://ww
 Documentation
 ----------------------
 
-coming soon...
+You could call this a [documentation](https://github.com/Kasoki/BooruPy/wiki/Documentation)
 
 Ehh, there is something like a test application...
 ----------------------
