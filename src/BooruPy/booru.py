@@ -8,9 +8,9 @@ from provider import DanbooruProvider, GelbooruProvider
 
 class BooruPy:
     def __init__(self, providerlist_path):
-		providers = json.load(open(providerlist_path))
-		self.provider_list = []
-		for p in providers:
+                providers = json.load(open(providerlist_path))
+                self.provider_list = []
+                for p in providers:
                         if p["type"] == "danbooru":
                             self.provider_list.append(DanbooruProvider(p))
                         elif p["type"] == "gelbooru":
