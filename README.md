@@ -1,19 +1,24 @@
-[pyDanbooru](http://github.com/kasoki/pyDanbooru)
+[BooruPy](http://github.com/kasoki/BooruPy)
 ===================================================
 
-pyDanbooru is a simple library for interacting with Danbooru systems.
+BooruPy is a simple library for interacting with various image board "Booru" systems. 
+
+Supporting
+----------------------
+* Danbooru 1.18.0
+* Gelbooru 0.2
 
 License?
 ----------------------
 
-pyDanbooru is licensed under the terms of [GNU General Public License v3](http://www.gnu.org/copyleft/gpl.html).
+BooruPy is licensed under the terms of [GNU General Public License v3](http://www.gnu.org/copyleft/gpl.html).
 
 Documentation
 ----------------------
 
-Yeah, there is something like that [here](https://github.com/Kasoki/pyDanbooru/wiki/Documentation)
+coming soon...
 
 Ehh, there is something like a test application...
 ----------------------
 
-The test application is a simple Danbooru image downloader, but beware my provider list could contain NSFW content.
+The test application is a simple image downloader, but beware my provider list could contain NSFW content.
