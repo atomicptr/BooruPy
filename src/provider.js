@@ -39,13 +39,13 @@
 		"name": "gelbooru",
 		"type": "gelbooru",
 		"url": "http://gelbooru.com",
-		"xml-query": "/index.php?page=dapi&s=post&q=index{0}"
+		"xml-query": "/index.php?page=dapi&s=post&q=index&"
 	},
 	{
 		"key": "rule34",
 		"name": "Rule34",
 		"type": "gelbooru",
 		"url": "http://rule34.booru.org",
-		"xml-query": "/index.php?page=dapi&s=post&q=index{0}"
+		"xml-query": "/index.php?page=dapi&s=post&q=index&"
 	}
 ]
