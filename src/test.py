@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from BooruPy.booru import BooruPy
 import urllib2
 import os
