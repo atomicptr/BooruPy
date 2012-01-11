@@ -31,16 +31,12 @@ if not path[len(path)-1] is "/":
 if not os.path.exists(path):
     os.mkdir(path)
 
-file_count = raw_input("file download count:[10] ")
-
-if not file_count:
-    file_count = 10
-
 downloaded = 0
 
 for i in booru_provider.get_images(tags):
     url = i.url
-    file_name = url.split('/')[-1]
+    file_name = "%s.%s" % (i.md5, i.url.split('.')[-1])
     local_path = path + file_name
     urllib.urlretrieve(url, local_path)
+    print("Downloaded %s" % (file_name))
     downloaded += 1
