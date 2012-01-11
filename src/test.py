@@ -35,7 +35,11 @@ downloaded = 0
 
 for i in booru_provider.get_images(tags):
     url = i.url
-    file_name = "%s.%s" % (i.md5, i.url.split('.')[-1])
+    file_name = "%s-%s[%s].%s" % (
+        booru_provider.shortname,
+        '-'.join(tags),
+        i.md5,
+        i.url.split('.')[-1])
     local_path = path + file_name
     urllib.urlretrieve(url, local_path)
     print("Downloaded %s" % (file_name))
