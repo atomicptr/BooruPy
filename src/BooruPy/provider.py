@@ -4,12 +4,12 @@
 # You should have received a copy of the GNU General Public License
 # along with BooruPy. If not, see <http://www.gnu.org/licenses/>
 import json
-from xml.etree import ElementTree
 import urllib
+from urlparse import urljoin
 from image import Image
+from xml.etree import ElementTree
 
 class BaseProvider:
-
     def _get_URLopener(self):
         return urllib.FancyURLopener({}) # todo: add proxy support
 
@@ -24,31 +24,20 @@ class BaseProvider:
         return ElementTree.XML(raw_xml)
 
 class DanbooruProvider(BaseProvider):
-    def __init__(self, provider_info):
-        if provider_info:
-            self.key = provider_info["key"]
-            self.name = provider_info["name"]
-            self.url = ''.join((provider_info["url"],
-                    provider_info["json-query"]))
-        else:
-            pass # TODO: raise error
+    def __init__(self, base_url, name, shortname):
+        self._base_url = base_url
+        self._img_url = urljoin(self._base_url,
+            "/post/index.json?tags=%s&limit=%s&page=%s")
+        self.name = name
+        self.shortname = shortname
 
     def _request_images(self, tags):
         limit = 100
         page = 0
-
         ende = False
         while not ende:
-            sb = [  self.url,
-                    'tags=',
-                    '+'.join(tags),
-                    '&limit=',
-                    str(limit),
-                    '&page=',
-                    str(page)
-            ]
             page += 1
-            page_link = ''.join(sb) 
+            page_link = self._img_url % ( '+'.join(tags), limit, page )
             images = self._get_json(page_link)
             if len(images) < limit:
                 ende = True
@@ -60,29 +49,20 @@ class DanbooruProvider(BaseProvider):
                 yield Image.from_dict(i)
     
 class GelbooruProvider(BaseProvider):
-    def __init__(self, provider_info):
-        if provider_info:
-            self.key = provider_info["key"]
-            self.name = provider_info["name"]
-            self.url = ''.join((provider_info["url"],
-                provider_info["xml-query"]))
+    def __init__(self, base_url, name, shortname):
+        self._base_url = base_url
+        self._img_url = urljoin(self._base_url,
+            "/index.php?page=dapi&s=post&q=index&tags=%s&limit=%s&pid=%s")
+        self.name = name
+        self.shortname = shortname
 
     def _request_images(self, tags):
         limit = 100
         page = 0
-
         ende = False
         while not ende:
-            sb = [  self.url,
-                    'tags=',
-                    '+'.join(tags),
-                    '&limit=',
-                    str(limit),
-                    '&pid=',
-                    str(page)
-            ]
             page += 1
-            page_link = ''.join(sb) 
+            page_link = self._img_url % ( '+'.join(tags), limit, page )            
             images = self._get_xml(page_link)
             if len(images) < limit:
                 ende = True

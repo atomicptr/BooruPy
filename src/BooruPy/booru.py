@@ -12,9 +12,11 @@ class BooruPy:
         self.provider_list = []
         for p in providers:
             if p["type"] == "danbooru":
-                self.provider_list.append(DanbooruProvider(p))
+                self.provider_list.append(DanbooruProvider(p['url'], p['name'],
+                    p['key']))
             elif p["type"] == "gelbooru":
-                self.provider_list.append(GelbooruProvider(p))
+                self.provider_list.append(GelbooruProvider(p['url'],
+                    p['name'], p['key']))
             else:
                 pass # todo: raise error
     def get_provider_by_id(self, provider_id):

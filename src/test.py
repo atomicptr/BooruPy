@@ -20,10 +20,10 @@ if not pid:
 
 booru_provider = booru_handler.get_provider_by_id(int(pid))
 
-path = raw_input("Path:[{0}-{1}/] ".format(booru_provider.key, "-".join(tags)))
+path = raw_input("Path:[{0}-{1}/] ".format(booru_provider.shortname, "-".join(tags)))
 
 if not path:
-    path = "{0}-{1}/".format(booru_provider.key, "-".join(tags))
+    path = "{0}-{1}/".format(booru_provider.shortname, "-".join(tags))
 
 if not path[len(path)-1] is "/":
     path += "/"
@@ -34,7 +34,7 @@ if not os.path.exists(path):
 file_count = raw_input("file download count:[10] ")
 
 if not file_count:
-    file_count = 200
+    file_count = 10
 
 downloaded = 0
 
