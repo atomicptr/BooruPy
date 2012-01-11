@@ -19,10 +19,13 @@ class BooruPy:
                     p['name'], p['key']))
             else:
                 pass # todo: raise error
+
     def get_provider_by_id(self, provider_id):
         if isinstance(provider_id, int):
             return self.provider_list[provider_id]
+
     def get_provider_by_key(self, provider_key):
         for p in self.provider_list:
             if p.key is provider_key:
                 return p
+

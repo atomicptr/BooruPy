@@ -26,10 +26,29 @@ class BaseProvider:
 class DanbooruProvider(BaseProvider):
     def __init__(self, base_url, name, shortname):
         self._base_url = base_url
-        self._img_url = urljoin(self._base_url,
-            "/post/index.json?tags=%s&limit=%s&page=%s")
         self.name = name
         self.shortname = shortname
+        self._img_url = urljoin(self._base_url,
+            "/post/index.json?tags=%s&limit=%s&page=%s")
+        self._tag_url = urljoin(self._base_url,
+                "/tags/index.json?limit=%s&page=%s")
+
+    def _request_tag(self):
+        limit = 100
+        page = 0
+        ende = False
+        while not ende:
+            page += 1
+            page_link = self._tag_url % (limit, page)
+            tags = self._get_json(page_link)
+            if len(tags) < limit:
+                ende = True
+            yield tags
+
+    def get_tags(self):
+        for tags in self._request_tag():
+            for tag in tags:
+                yield tag.count, tag.name
 
     def _request_images(self, tags):
         limit = 100
@@ -37,7 +56,7 @@ class DanbooruProvider(BaseProvider):
         ende = False
         while not ende:
             page += 1
-            page_link = self._img_url % ( '+'.join(tags), limit, page )
+            page_link = self._img_url % ('+'.join(tags), limit, page)
             images = self._get_json(page_link)
             if len(images) < limit:
                 ende = True
@@ -55,6 +74,25 @@ class GelbooruProvider(BaseProvider):
             "/index.php?page=dapi&s=post&q=index&tags=%s&limit=%s&pid=%s")
         self.name = name
         self.shortname = shortname
+        self._tag_url = urljoin(self._base_url,
+                "/index.php?page=dapi&s=tag&q=index&limit=%s&pid=%s")
+
+    def _request_tag(self):
+        limit = 100
+        page = 0
+        ende = False
+        while not ende:
+            page += 1
+            page_link = self._tag_url % (limit, page)
+            tags = self._get_xml(page_link)
+            if len(tags) < limit:
+                ende = True
+            yield tags
+
+    def get_tags(self):
+        for tags in self._request_tag():
+            for tag in tags:
+                yield tag.count, tag.name
 
     def _request_images(self, tags):
         limit = 100
