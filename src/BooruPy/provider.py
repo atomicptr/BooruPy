@@ -36,13 +36,13 @@ class DanbooruProvider(BaseProvider):
     def _request_tag(self):
         limit = 100
         page = 0
-        ende = False
-        while not ende:
+        end = False
+        while not end:
             page += 1
             page_link = self._tag_url % (limit, page)
             tags = self._get_json(page_link)
             if len(tags) < limit:
-                ende = True
+                end = True
             yield tags
 
     def get_tags(self):
@@ -53,13 +53,13 @@ class DanbooruProvider(BaseProvider):
     def _request_images(self, tags):
         limit = 100
         page = 0
-        ende = False
-        while not ende:
+        end = False
+        while not end:
             page += 1
             page_link = self._img_url % ('+'.join(tags), limit, page)
             images = self._get_json(page_link)
             if len(images) < limit:
-                ende = True
+                end = True
             yield images
 
     def get_images(self, tags):
@@ -80,13 +80,13 @@ class GelbooruProvider(BaseProvider):
     def _request_tag(self):
         limit = 100
         page = 0
-        ende = False
-        while not ende:
+        end = False
+        while not end:
             page += 1
             page_link = self._tag_url % (limit, page)
             tags = self._get_xml(page_link)
             if len(tags) < limit:
-                ende = True
+                end = True
             yield tags
 
     def get_tags(self):
@@ -97,13 +97,13 @@ class GelbooruProvider(BaseProvider):
     def _request_images(self, tags):
         limit = 100
         page = 0
-        ende = False
-        while not ende:
+        end = False
+        while not end:
             page += 1
             page_link = self._img_url % ( '+'.join(tags), limit, page )            
             images = self._get_xml(page_link)
             if len(images) < limit:
-                ende = True
+                end = True
             yield images
 
     def get_images(self, tags):
