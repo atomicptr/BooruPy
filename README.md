@@ -1,4 +1,4 @@
-[BooruPy](http://github.com/kasoki/BooruPy)
+[BooruPy](http://github.com/Kasoki/BooruPy)
 ===================================================
 
 BooruPy is a simple library for interacting with various image board "Booru" systems. 
@@ -7,6 +7,10 @@ Supporting
 ----------------------
 * Danbooru
 * Gelbooru 0.2+ (0.1.X has no API support)
+
+Applications using BooruPy
+----------------------
+* [BooruPy-Loadr](http://github.com/Kasoki/BooruPy-Loadr)
 
 License?
 ----------------------
