@@ -6,7 +6,9 @@
 import json
 from provider import DanbooruProvider, GelbooruProvider
 
+
 class BooruPy:
+
     def __init__(self, providerlist_path):
         providers = json.load(open(providerlist_path))
         self.provider_list = []
@@ -18,7 +20,7 @@ class BooruPy:
                 self.provider_list.append(GelbooruProvider(p['url'],
                     p['name'], p['key']))
             else:
-                pass # todo: raise error
+                pass  # TODO: raise error
 
     def get_provider_by_id(self, provider_id):
         if isinstance(provider_id, int):
@@ -28,4 +30,3 @@ class BooruPy:
         for p in self.provider_list:
             if p.key is provider_key:
                 return p
-

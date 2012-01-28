@@ -9,9 +9,10 @@ from urlparse import urljoin
 from image import Image
 from xml.etree import ElementTree
 
+
 class BaseProvider:
     def _get_URLopener(self):
-        return urllib.FancyURLopener({}) # todo: add proxy support
+        return urllib.FancyURLopener({})  # TODO: add proxy support
 
     def _get_json(self, request_url):
         opener = self._get_URLopener()
@@ -22,6 +23,7 @@ class BaseProvider:
         opener = self._get_URLopener()
         raw_xml = opener.open(request_url).read()
         return ElementTree.XML(raw_xml)
+
 
 class DanbooruProvider(BaseProvider):
     def __init__(self, base_url, name, shortname):
@@ -36,13 +38,13 @@ class DanbooruProvider(BaseProvider):
     def _request_tag(self):
         limit = 100
         page = 0
-        end = False
-        while not end:
+        ende = False
+        while not ende:
             page += 1
             page_link = self._tag_url % (limit, page)
             tags = self._get_json(page_link)
             if len(tags) < limit:
-                end = True
+                ende = True
             yield tags
 
     def get_tags(self):
@@ -53,20 +55,21 @@ class DanbooruProvider(BaseProvider):
     def _request_images(self, tags):
         limit = 100
         page = 0
-        end = False
-        while not end:
+        ende = False
+        while not ende:
             page += 1
             page_link = self._img_url % ('+'.join(tags), limit, page)
             images = self._get_json(page_link)
             if len(images) < limit:
-                end = True
+                ende = True
             yield images
 
     def get_images(self, tags):
         for images in self._request_images(tags):
             for i in images:
                 yield Image.from_dict(i)
-    
+
+
 class GelbooruProvider(BaseProvider):
     def __init__(self, base_url, name, shortname):
         self._base_url = base_url
@@ -80,13 +83,13 @@ class GelbooruProvider(BaseProvider):
     def _request_tag(self):
         limit = 100
         page = 0
-        end = False
-        while not end:
+        ende = False
+        while not ende:
             page += 1
             page_link = self._tag_url % (limit, page)
             tags = self._get_xml(page_link)
             if len(tags) < limit:
-                end = True
+                ende = True
             yield tags
 
     def get_tags(self):
@@ -97,17 +100,16 @@ class GelbooruProvider(BaseProvider):
     def _request_images(self, tags):
         limit = 100
         page = 0
-        end = False
-        while not end:
+        ende = False
+        while not ende:
             page += 1
-            page_link = self._img_url % ( '+'.join(tags), limit, page )            
+            page_link = self._img_url % ('+'.join(tags), limit, page)
             images = self._get_xml(page_link)
             if len(images) < limit:
-                end = True
+                ende = True
             yield images
 
     def get_images(self, tags):
         for images in self._request_images(tags):
             for i in images:
                 yield Image.from_etree(i)
-

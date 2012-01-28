@@ -3,10 +3,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with pyDanbooru. If not, see <http://www.gnu.org/licenses/>
+
+
 class Image:
 
     def __init__(self):
-       pass 
+        pass
 
     @classmethod
     def from_dict(cls, image):
