@@ -5,7 +5,7 @@ import os
 
 tags = raw_input("Tags (seperate with space): ").split(' ')
 
-booru_handler = BooruPy("provider.js")
+booru_handler = BooruPy("provider.json")
 
 i = 0
 

@@ -1,9 +1,9 @@
 [
 	{
-		"key": "dan",
-		"name": "danbooru",
-		"type": "danbooru",
-		"url": "http://danbooru.donmai.us"
+		"key": "safe",
+		"name": "Safebooru",
+		"type": "gelbooru",
+		"url": "http://safebooru.org"
 	},
 	{
 		"key": "scomplex_chan",
@@ -40,11 +40,5 @@
 		"name": "Rule34",
 		"type": "gelbooru",
 		"url": "http://rule34.booru.org"
-	},
-	{
-		"key": "safe",
-		"name": "Safebooru",
-		"type": "gelbooru",
-		"url": "http://safebooru.org"
 	}
 ]

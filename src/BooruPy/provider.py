@@ -37,15 +37,15 @@ class DanbooruProvider(BaseProvider):
 
     def _request_tag(self):
         limit = 100
-        page = 0
-        ende = False
-        while not ende:
-            page += 1
+        page = 1
+        end = False
+        while not end:
             page_link = self._tag_url % (limit, page)
             tags = self._get_json(page_link)
             if len(tags) < limit:
-                ende = True
+                end = True
             yield tags
+            page += 1
 
     def get_tags(self):
         for tags in self._request_tag():
@@ -54,15 +54,15 @@ class DanbooruProvider(BaseProvider):
 
     def _request_images(self, tags):
         limit = 100
-        page = 0
-        ende = False
-        while not ende:
-            page += 1
+        page = 1
+        end = False
+        while not end:
             page_link = self._img_url % ('+'.join(tags), limit, page)
             images = self._get_json(page_link)
             if len(images) < limit:
-                ende = True
+                end = True
             yield images
+            page += 1
 
     def get_images(self, tags):
         for images in self._request_images(tags):
@@ -83,14 +83,14 @@ class GelbooruProvider(BaseProvider):
     def _request_tag(self):
         limit = 100
         page = 0
-        ende = False
-        while not ende:
-            page += 1
+        end = False
+        while not end:
             page_link = self._tag_url % (limit, page)
             tags = self._get_xml(page_link)
             if len(tags) < limit:
-                ende = True
+                end = True
             yield tags
+            page += 1
 
     def get_tags(self):
         for tags in self._request_tag():
@@ -100,14 +100,14 @@ class GelbooruProvider(BaseProvider):
     def _request_images(self, tags):
         limit = 100
         page = 0
-        ende = False
-        while not ende:
-            page += 1
+        end = False
+        while not end:
             page_link = self._img_url % ('+'.join(tags), limit, page)
             images = self._get_xml(page_link)
             if len(images) < limit:
-                ende = True
+                end = True
             yield images
+            page += 1
 
     def get_images(self, tags):
         for images in self._request_images(tags):
