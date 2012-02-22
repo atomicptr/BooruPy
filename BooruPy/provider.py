@@ -26,10 +26,11 @@ class BaseProvider:
 
 
 class DanbooruProvider(BaseProvider):
-    def __init__(self, base_url, name, shortname):
+    def __init__(self, base_url, name, shortname, contains_nsfw_content):
         self._base_url = base_url
         self.name = name
         self.shortname = shortname
+        self.contains_nsfw_content = contains_nsfw_content
         self._img_url = urljoin(self._base_url,
             "/post/index.json?tags=%s&limit=%s&page=%s")
         self._tag_url = urljoin(self._base_url,
@@ -71,12 +72,13 @@ class DanbooruProvider(BaseProvider):
 
 
 class GelbooruProvider(BaseProvider):
-    def __init__(self, base_url, name, shortname):
+    def __init__(self, base_url, name, shortname, contains_nsfw_content):
         self._base_url = base_url
         self._img_url = urljoin(self._base_url,
             "/index.php?page=dapi&s=post&q=index&tags=%s&limit=%s&pid=%s")
         self.name = name
         self.shortname = shortname
+        self.contains_nsfw_content = contains_nsfw_content
         self._tag_url = urljoin(self._base_url,
                 "/index.php?page=dapi&s=tag&q=index&limit=%s&pid=%s")
 

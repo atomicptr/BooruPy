@@ -25,11 +25,6 @@ Documentation
 
 You could call this a Documentation_.
 
-Ehh, there is something like a test application
------------------------------------------------
-
-The test application is a simple image downloader, but beware my provider list could contain NSFW content.
-
 .. _BooruPy: http://github.com/Kasoki/BooruPy
 .. _BooruPyLoadr: http://github.com/Kasoki/BooruPy-Loadr
 .. _Documentation: https://github.com/Kasoki/BooruPy/wiki/Documentation
