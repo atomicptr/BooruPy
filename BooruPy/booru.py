@@ -9,26 +9,16 @@ from provider import DanbooruProvider, GelbooruProvider
 
 class BooruPy:
 
-    def __init__(self, providerlist_path, show_nsfw_providers=False):
+    def __init__(self, providerlist_path, filter_nsfw=True):
         providers = json.load(open(providerlist_path))
         self.provider_list = []
         for p in providers:
             if p["type"] == "danbooru":
-                if p["contains-nsfw-content"]:
-                    if show_nsfw_providers:
-                        self.provider_list.append(DanbooruProvider(p['url'], p['name'],
-                            p['key'], p["contains-nsfw-content"]))
-                else:
-                    self.provider_list.append(DanbooruProvider(p['url'], p['name'],
-                        p['key'], p["contains-nsfw-content"]))
+                self.provider_list.append(DanbooruProvider(p['url'], p['name'],
+                    p['key'], filter_nsfw))
             elif p["type"] == "gelbooru":
-                if p["contains-nsfw-content"]:
-                    if show_nsfw_providers:
-                        self.provider_list.append(GelbooruProvider(p['url'], p['name'],
-                            p['key'], p["contains-nsfw-content"]))
-                else:
-                    self.provider_list.append(GelbooruProvider(p['url'], p['name'],
-                        p['key'], p["contains-nsfw-content"]))
+                self.provider_list.append(GelbooruProvider(p['url'], p['name'],
+                    p['key'], filter_nsfw))
             else:
                 print("Unknown provider type: {0}".format(p["type"]))
 

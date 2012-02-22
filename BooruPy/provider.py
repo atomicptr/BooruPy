@@ -26,11 +26,11 @@ class BaseProvider:
 
 
 class DanbooruProvider(BaseProvider):
-    def __init__(self, base_url, name, shortname, contains_nsfw_content):
+    def __init__(self, base_url, name, shortname, filter_nsfw):
         self._base_url = base_url
         self.name = name
         self.shortname = shortname
-        self.contains_nsfw_content = contains_nsfw_content
+        self._filter_nsfw = filter_nsfw
         self._img_url = urljoin(self._base_url,
             "/post/index.json?tags=%s&limit=%s&page=%s")
         self._tag_url = urljoin(self._base_url,
@@ -66,19 +66,22 @@ class DanbooruProvider(BaseProvider):
             page += 1
 
     def get_images(self, tags):
+        if self._filter_nsfw:
+            tags.append("rating:s")
+
         for images in self._request_images(tags):
             for i in images:
                 yield Image.from_dict(i)
 
 
 class GelbooruProvider(BaseProvider):
-    def __init__(self, base_url, name, shortname, contains_nsfw_content):
+    def __init__(self, base_url, name, shortname, filter_nsfw):
         self._base_url = base_url
         self._img_url = urljoin(self._base_url,
             "/index.php?page=dapi&s=post&q=index&tags=%s&limit=%s&pid=%s")
         self.name = name
         self.shortname = shortname
-        self.contains_nsfw_content = contains_nsfw_content
+        self._filter_nsfw = filter_nsfw
         self._tag_url = urljoin(self._base_url,
                 "/index.php?page=dapi&s=tag&q=index&limit=%s&pid=%s")
 
@@ -112,6 +115,9 @@ class GelbooruProvider(BaseProvider):
             page += 1
 
     def get_images(self, tags):
+        if self._filter_nsfw:
+            tags.append("rating:safe")
+
         for images in self._request_images(tags):
             for i in images:
                 yield Image.from_etree(i)
