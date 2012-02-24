@@ -7,7 +7,7 @@ import json
 from provider import DanbooruProvider, GelbooruProvider
 
 
-class BooruPy:
+class BooruManager:
 
     def __init__(self, providerlist_path, filter_nsfw=True):
         providers = json.load(open(providerlist_path))
