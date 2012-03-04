@@ -1,6 +1,4 @@
 *.pyc
-*.sublime-project
-*.sublime-workspace
 MANIFEST
 dist/*
 build/*
