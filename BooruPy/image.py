@@ -4,6 +4,8 @@
 # You should have received a copy of the GNU General Public License
 # along with pyDanbooru. If not, see <http://www.gnu.org/licenses/>
 
+import hashlib
+
 
 class Image:
 
@@ -45,3 +47,19 @@ class Image:
         inst.sample_height = image.attrib["sample_height"]
         inst.tags = image.attrib["tags"].split(' ')
         return inst
+
+    def _get_md5_checksum_from_file(self, filepath):
+        _file = open(filepath, 'rb')
+        md5 = hashlib.md5()
+        while True:
+                data = _file.read(8192)
+                if not data:
+                        break
+                md5.update(data)
+        return md5.hexdigest()
+
+    def equals(self, image_path):
+        if self.md5 == self._get_md5_checksum_from_file(image_path):
+                return True
+        else:
+                return False
