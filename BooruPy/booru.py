@@ -12,7 +12,7 @@ class BooruManager:
     def __init__(self, providerlist_path, filter_nsfw=True):
         providers = json.load(open(providerlist_path))
         self.provider_list = []
-        for p in providers:
+        for p in providers["providers"]:
             if p["type"] == "danbooru":
                 self.provider_list.append(DanbooruProvider(p['url'], p['name'],
                     p['key'], filter_nsfw))

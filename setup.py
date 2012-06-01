@@ -2,9 +2,9 @@ from distutils.core import setup
 
 setup(
     name='BooruPy',
-    version='0.1.5',
+    version='0.1.7',
     keywords=['pictures', 'anime', 'booru', 'gelbooru', 'danbooru', 'image',
-        'board', 'imageboard'],
+     'board', 'imageboard'],
     author='Christopher Kaster',
     author_email='ikasoki@gmail.com',
     maintainer='Giuliano Di Pasquale',
