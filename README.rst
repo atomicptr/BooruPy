@@ -14,6 +14,7 @@ Applications using BooruPy
 --------------------------
 
 * BooruPyLoadr_
+* BooruView_
 
 License
 -------
@@ -26,6 +27,7 @@ Documentation
 You could call this a Documentation_.
 
 .. _BooruPy: http://github.com/Kasoki/BooruPy
+.. _BooruView: http://github.com/Kasoki/BooruView
 .. _BooruPyLoadr: http://github.com/Kasoki/BooruPy-Loadr
 .. _Documentation: https://github.com/Kasoki/BooruPy/wiki/Documentation
 .. _GPLv3: http://www.gnu.org/copyleft/gpl.html
