@@ -1,4 +1,4 @@
 from booru import BooruManager as _BooruManager
 BooruManager = _BooruManager
 
-version = "0.1.6"
+__version__ = "0.1.7"

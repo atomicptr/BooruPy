@@ -24,6 +24,9 @@ class BaseProvider:
         raw_xml = opener.open(request_url).read()
         return ElementTree.XML(raw_xml)
 
+    def set_filter_nsfw(self, filter_nsfw=True):
+        self._filter_nsfw = filter_nsfw
+
 
 class DanbooruProvider(BaseProvider):
     def __init__(self, base_url, name, shortname, filter_nsfw):
